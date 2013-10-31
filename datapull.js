@@ -136,7 +136,7 @@ function createUser(userObj, private, save) {
 
     pending++;
     // Calculate Component
-    bugzilla.countBugsX({
+    bugzilla.countComponents({
         x_axis_field: "product",
         y_axis_field: "component",
         "field0-0-0": "attachment.is_patch",
