@@ -120,10 +120,12 @@ function createUser(userObj, private, save) {
     });
 
     pending++;
-    // Count assigned
+    // Count assigned bugs that are not WONTFIXed or DUPLICATEd
     bugzilla.countBugs({
         email1: email,
-        email1_assigned_to: 1
+        email1_assigned_to: 1,
+        status: ['UNCONFIRMED','NEW','ASSIGNED','REOPENED','RESOLVED','VERIFIED'],
+        resolution: ['---','FIXED']
     }, function(error, assigned) {
         if (error) {
             errorHandler(error);
