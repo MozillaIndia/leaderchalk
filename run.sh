@@ -2,7 +2,7 @@
 # This script pulls data and commit back to GitHub repo.
 
 TIMESTAMP=$(date)
-node lib/datapull.js
+node index.js
 git add .
 git commit -m "Update stats.json - ${TIMESTAMP}"
 git push -u origin gh-pages
