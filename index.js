@@ -163,6 +163,12 @@ function maybeSave(obj, pending, save) {
 
 
 // Bootstrap the app
+
+// Try to read github credentials from command line
+process.argv.forEach(function(val, index, array) {
+    GITHUB_USERNAME = array[2]? array[2] : GITHUB_USERNAME;
+    GITHUB_PASSWORD = array[3]? array[3]: GITHUB_PASSWORD;
+});
 if (!GITHUB_USERNAME || !GITHUB_PASSWORD) {
     console.error('Please setup you github credentials before running.');
     process.exit(1);
@@ -174,6 +180,7 @@ exec('git config remote.origin.url ' + ORIG_URL, function(error, stdout, stderr)
         console.error('Error occured while setting up the repo origin: ' + error);
     }
 });
+
 // copy our copy of bz.js
 exec('cp bz.js node_modules/bz/', function(error, stdout, stderr) {});
 
