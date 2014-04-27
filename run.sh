@@ -3,6 +3,6 @@
 
 TIMESTAMP=$(date)
 node index.js
-git add .
+git add stats.json
 git commit -m "Update stats.json - ${TIMESTAMP}"
 git push -u origin gh-pages
