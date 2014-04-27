@@ -1,7 +1,11 @@
 var fs = require('fs'),
     bz = require('bz'),
     crypto = require('crypto'),
+    exec = require('child_process').exec,
     mozilliansAPI = require('./lib/mozillians.js');
+
+var GITHUB_USERNAME = '',
+    GITHUB_PASSWORD = '';
 
 var emails = [],
     userData = [],
@@ -157,5 +161,21 @@ function maybeSave(obj, pending, save) {
     }
 }
 
-// Start the app
+
+// Bootstrap the app
+if (!GITHUB_USERNAME || !GITHUB_PASSWORD) {
+    console.error('Please setup you github credentials before running.');
+    process.exit(1);
+}
+var ORIG_URL = 'https://' + GITHUB_USERNAME + ':' + GITHUB_PASSWORD + '@github.com/' + GITHUB_USERNAME + '/leaderchalk.git';
+console.log(ORIG_URL);
+exec('git config remote.origin.url ' + ORIG_URL, function(error, stdout, stderr) {
+    if (error) {
+        console.error('Error occured while setting up the repo origin: ' + error);
+    }
+});
+// copy our copy of bz.js
+exec('cp bz.js node_modules/bz/', function(error, stdout, stderr) {});
+
+// Start already!
 loadUsers();
