@@ -7,6 +7,7 @@
     "url": "https://github.com/MozillaIndia/leaderchalk"
   },
   "dependencies": {
-    "bz": "~1.0.0-alpha.5"
+    "bz": "~1.0.0-alpha.5",
+    "execSync": "~1.0.1-pre"
   }
 }

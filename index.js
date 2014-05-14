@@ -1,7 +1,7 @@
 var fs = require('fs'),
     bz = require('bz'),
     crypto = require('crypto'),
-    exec = require('child_process').exec,
+    execSync = require('execSync'),
     mozilliansAPI = require('./lib/mozillians.js');
 
 var GITHUB_USERNAME = '',
@@ -174,15 +174,21 @@ if (!GITHUB_USERNAME || !GITHUB_PASSWORD) {
     process.exit(1);
 }
 var ORIG_URL = 'https://' + GITHUB_USERNAME + ':' + GITHUB_PASSWORD + '@github.com/' + GITHUB_USERNAME + '/leaderchalk.git';
-console.log(ORIG_URL);
-exec('git config remote.origin.url ' + ORIG_URL, function(error, stdout, stderr) {
-    if (error) {
-        console.error('Error occured while setting up the repo origin: ' + error);
-    }
-});
+
+var execResult = execSync.exec('git config remote.origin.url ' + ORIG_URL);
+if (execResult.code != 0) {
+    // Command failed
+    console.log(execResult.stderr);
+    process.exit(1);
+}
 
 // copy our copy of bz.js
-exec('cp bz.js node_modules/bz/', function(error, stdout, stderr) {});
+var execResult = execSync.exec('cp bz.js node_modules/bz/');
+if (execResult.code != 0) {
+    // Command failed
+    console.log(execResult.stderr);
+    process.exit(1);
+}
 
 // Start already!
 loadUsers();
