@@ -3,8 +3,8 @@ var BugzillaClient = function(options) {
   this.username = options.username;
   this.password = options.password;
   this.apiUrl = options.url ||
-    (options.test ? "https://api-dev.bugzilla.mozilla.org/test/latest/"
-                  : "https://api-dev.bugzilla.mozilla.org/latest/");
+    (options.test ? "https://bugzilla-dev.allizom.org/bzapi"
+                  : "https://bugzilla.mozilla.org/bzapi");
 }
 
 BugzillaClient.prototype = {
