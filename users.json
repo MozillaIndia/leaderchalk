@@ -1,5 +1,5 @@
 // [IRC Nick, Email, Github User Name, Commit Access Level]
-// Please user double space instead of tab and add a space after the comma.
+// Please use double space instead of tab and add a space after the comma.
 // Also, if you are adding your name, add it to the end of the list with a
 // trailing comma at the end. Use double quotes.
 [
@@ -35,4 +35,5 @@
   ["trishul", "trishul.goel@gmail.com", "tsl143", 0],
   ["hemanth", "hemanth.hm@gmail.com", "hemanth", 0],
   ["Tanay", "tanay1337@gmail.com", "tanay1337", 0],
+  ["mishravikas", "vikasmishra95@gmail.com", "mishravikas", 1],
 ];
