@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    bz = require('bz'),
+    bz = require('./bz'),
     crypto = require('crypto'),
     execSync = require('execSync'),
     mozilliansAPI = require('./lib/mozillians.js');
@@ -176,14 +176,6 @@ if (!GITHUB_USERNAME || !GITHUB_PASSWORD) {
 var ORIG_URL = 'https://' + GITHUB_USERNAME + ':' + GITHUB_PASSWORD + '@github.com/' + GITHUB_USERNAME + '/leaderchalk.git';
 
 var execResult = execSync.exec('git config remote.origin.url ' + ORIG_URL);
-if (execResult.code != 0) {
-    // Command failed
-    console.log(execResult.stderr);
-    process.exit(1);
-}
-
-// copy our copy of bz.js
-var execResult = execSync.exec('cp bz.js node_modules/bz/');
 if (execResult.code != 0) {
     // Command failed
     console.log(execResult.stderr);
